@@ -27,18 +27,6 @@ def show_field(field):
     return line.join(['|'.join(i)+'|' for i in board])+line
 
 
-def check_win_condition(field):
-    field = list(chain(*field))
-    for a, b, c in [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6),
-                    (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]:
-        if field[a] == field[b] == field[c] != ' ':
-            return 'Victory'
-    if all(i != ' ' for i in field):
-        return 'Tie'
-    else:
-        return
-
-
 def play_the_game(sign, players, field):
     while True:
         turn = next(sign)
@@ -61,6 +49,18 @@ def play_the_game(sign, players, field):
         elif result == 'Tie':
             print('Боевая ничья')
             break
+
+
+def check_win_condition(field):
+    field = list(chain(*field))
+    for a, b, c in [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6),
+                    (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]:
+        if field[a] == field[b] == field[c] != ' ':
+            return 'Victory'
+    if all(i != ' ' for i in field):
+        return 'Tie'
+    else:
+        return
 
 
 if __name__ == '__main__':
